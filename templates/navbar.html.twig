@@ -1,0 +1,55 @@
+<!-- templates/navbar.html.twig -->
+<style>
+    .navbar {
+        background-color: #f8f8f8;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .navbar-brand a {
+        font-size: 20px;
+        font-weight: bold;
+        color: #333;
+        text-decoration: none;
+    }
+
+    .navbar-menu {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+    }
+
+    .navbar-menu li {
+        margin-left: 10px;
+    }
+
+    .navbar-menu li a {
+        color: #333;
+        text-decoration: none;
+    }
+</style>
+
+<nav class="navbar">
+    <div class="navbar-brand">
+        <a href="{{ path('home') }}">Logo</a>
+    </div>
+    <ul class="navbar-menu">
+        <li><a href="{{ path('home') }}">Home</a></li>
+        {% if app.user %}
+            <li><a href="{{ path('logout') }}">Logout</a></li>
+            <li><a href="{{ path('profile') }}">Profile</a></li>
+            <li class="user-session">
+                <a href="{{ path('profile') }}">
+                    <img src="{{ app.user.avatar }}" alt="User Avatar">
+                    <span>{{ app.user.username }}</span>
+                </a>
+            </li>
+        {% else %}
+            <li><a href="{{ path('app_register') }}">Sign Up</a></li>
+            <li><a href="{{ path('app_login') }}">Log In</a></li>
+        {% endif %}
+    </ul>
+</nav>
